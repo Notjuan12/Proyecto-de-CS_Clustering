@@ -1,6 +1,7 @@
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer as tfid
 from sklearn.cluster import KMeans as km
+import Datos_cluster
 
 
 def inicializar_csv():  # usar solo los datos de moves para el tdf
@@ -9,13 +10,7 @@ def inicializar_csv():  # usar solo los datos de moves para el tdf
     nombres = datos.drop(["moves", "url", "texto"], axis=1)
     return datos_moves, nombres
 
-
-def tipos_pokemones():
-    tipos = ["Normal", "Fire", "Water", "Electric", "Grass", "Ice", "Fighting", "Poison", "Ground", "Flying", "Psychic",
-             "Bug", "Rock", "Ghost", "Dragon", "Dark", "Steel", "Fairy","normal", "fire", "water", "electric", "grass", "ice", "fighting", "poison", "ground", "flying", "psychic",
-             "bug", "rock", "ghost", "dragon", "dark", "steel", "fairy"]
-
-def inicializar_vectfid(datos):
+def inicializar_vectfid(datos):  #con stopwords no agrupa bien
     vectdf = tfid(ngram_range=(2, 3))
     vectdfesultado = vectdf.fit_transform(datos["moves"])
     vocabulario = vectdf.vocabulary_
