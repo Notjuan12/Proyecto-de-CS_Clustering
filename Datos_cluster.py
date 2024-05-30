@@ -1317,4 +1317,6 @@ def cabeceras():
 
 
 def separador(titulo):
-    print("_______" * 2, "{}".format(titulo), "_______" * 2)
+    print()
+    print("_______" * 7, "{}".format(titulo), "_______" * 7)
+    print()
