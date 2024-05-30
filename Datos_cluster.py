@@ -1300,9 +1300,21 @@ def stopword_eng():
         "zr",
     ]
     return stopwords
+
+
 def tipos_pokemones():
     tipos = ["Normal", "Fire", "Water", "Electric", "Grass", "Ice", "Fighting", "Poison", "Ground", "Flying", "Psychic",
              "Bug", "Rock", "Ghost", "Dragon", "Dark", "Steel", "Fairy", "normal", "fire", "water", "electric", "grass",
              "ice", "fighting", "poison", "ground", "flying", "psychic",
              "bug", "rock", "ghost", "dragon", "dark", "steel", "fairy"]
     return tipos
+
+
+def cabeceras():
+    cabeceras = ["PC1", "PC2", "PC3", "PC4", "PC5", "PC6", "PC7", "PC8", "PC9", "PC10", "PC11", "PC12", "PC13", "PC14",
+                 "PC15", "PC16", "PC17", "PC18"]
+    return cabeceras
+
+
+def separador(titulo):
+    print("_______" * 2, "{}".format(titulo), "_______" * 2)
