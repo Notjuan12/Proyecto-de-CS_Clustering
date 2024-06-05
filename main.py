@@ -56,6 +56,18 @@ def separar_tipos(data):  # separar los tipos de pokemones de la columna "moves"
     return data
 
 
+def agrupar_texto_tipos(data):
+    vectdf = tfid(ngram_range=(1, 1))
+    vectdfesultado = vectdf.fit_transform(data["texto"])
+    vocabulario = vectdf.vocabulary_
+    tokens = len(vectdf.vocabulary_)
+    matriz = vectdfesultado.toarray()
+    tabla_frecuencias = pd.DataFrame(data=matriz, columns=sorted(vocabulario))
+    column_text = inicializar_Kmeas(tabla_frecuencias)
+    tabla_frecuencias["cluster"] = column_text
+    return tabla_frecuencias, tokens, vocabulario
+
+
 def main():  # ejecucion de todas las funciones
     moves, pokemons = inicializar_csv()
     tabla_frecuencias, matriz, tokens, vocabulario = tabla_de_frecuencias(moves)  # vocabulario, 4 n-gramas,fijarse
@@ -64,6 +76,9 @@ def main():  # ejecucion de todas las funciones
     pca_pokemons = pca_preg2(tabla_frecuencias, kmean_colum, pokemons)
     Datos_cluster.separador("Matriz TDIF")
     print(matriz)
+    Datos_cluster.separador("Vocabulario y Tokens")
+    print(tokens)
+    print(vocabulario)
     Datos_cluster.separador("T.frecuencias sin Cluster")
     print(tabla_frecuencias)
     print("Numero de tokens: ", tokens)
@@ -75,9 +90,14 @@ def main():  # ejecucion de todas las funciones
     print(pca_pokemons)
     Datos_cluster.separador(r"Texto filtrado")
     print(tipo_filtrados)
+    tabla_frecuencias_text, tokens, vocabulario = agrupar_texto_tipos(tipo_filtrados)
+    Datos_cluster.separador(("Texto filtrado_cluster"))
+    print(vocabulario)
+    print(tabla_frecuencias)
+    print("numero de tokens ", tokens)
     pca_pokemons.to_csv("pca_comparacion_kmean.csv")
-    tabla_frecuencias.to_csv("Cluster_p_sin_nombre")
-    tipo_filtrados.to_csv("Tipos_filtrados_2")
+    tabla_frecuencias.to_csv("Cluster_p_sin_nombre.csv")
+    tabla_frecuencias_text.to_csv("Tipos_filtrados_2.csv")
 
 
 if __name__ == "__main__":
