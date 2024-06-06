@@ -13,7 +13,7 @@ def inicializar_csv():  # usar solo los datos de moves para el tdf
 
 
 def inicializar_vectfid(datos):  # con stopwords no agrupa bien , prueben deafult (2,3)
-    vectdf = tfid(ngram_range=(1, 3))
+    vectdf = tfid(ngram_range=(1, 2))
     vectdfesultado = vectdf.fit_transform(datos["moves"])
     vocabulario = vectdf.vocabulary_
     tokens = len(vectdf.vocabulary_)
