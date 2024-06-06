@@ -332,7 +332,6 @@ def stopword_eng():
         "fill",
         "find",
         "finds",
-        "fire",
         "first",
         "five",
         "fix",
@@ -1298,6 +1297,7 @@ def stopword_eng():
         "zero",
         "zm",
         "zr",
+        'ain', 'daren', 'hadn', 'herse', 'himse', 'itse', 'mayn', 'mightn', 'mon', 'mustn', 'myse', 'needn', 'oughtn', 'shan'
     ]
     return stopwords
 
@@ -1317,6 +1317,4 @@ def cabeceras():
 
 
 def separador(titulo):
-    print()
-    print("_______" * 7, "{}".format(titulo), "_______" * 7)
-    print()
+    print("_______" * 2, "{}".format(titulo), "_______" * 2)
